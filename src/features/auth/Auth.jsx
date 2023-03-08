@@ -28,7 +28,8 @@ function Auth() {
     e.preventDefault()
     try {
       const userData = await login({ email, password }).unwrap()
-      dispatch(setCredentials({ ...userData, email }))
+      console.log(userData.body.token)
+      dispatch(setCredentials({ email , accessToken : userData.body.token }))
       setEmail('')
       setPassword('')
       navigate('/main')
