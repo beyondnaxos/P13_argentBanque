@@ -8,8 +8,8 @@ import styles from './Auth.module.css'
 function Auth() {
   const userRef = useRef()
   const errRef = useRef()
-  const [user, setUser] = useState('')
-  const [pwd, setPwd] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [errMsg, setErrMsg] = useState('')
   const navigate = useNavigate()
 
@@ -22,21 +22,21 @@ function Auth() {
 
   useEffect(() => {
     setErrMsg('')
-  }, [user, pwd])
+  }, [email, password])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const userData = await login({ user, pwd }).unwrap()
-      dispatch(setCredentials({ ...userData, user }))
-      setUser('')
-      setPwd('')
+      const userData = await login({ email, password }).unwrap()
+      dispatch(setCredentials({ ...userData, email }))
+      setEmail('')
+      setPassword('')
       navigate('/main')
     } catch (err) {
       if (!err?.response) {
         setErrMsg('Server is not responding')
       } else if (err.response?.status === 400) {
-        setErrMsg('Missing user or password')
+        setErrMsg('Missing email or password')
       } else if (err.response?.status === 401) {
         setErrMsg('Unhauthorized')
       } else {
@@ -46,8 +46,8 @@ function Auth() {
     }
   }
 
-  const handleUserInput = (e) => setUser(e.target.value)
-  const handlePwdInput = (e) => setPwd(e.target.value)
+  const handleEmailInput = (e) => setEmail(e.target.value)
+  const handlePasswordInput = (e) => setPassword(e.target.value)
 
   const content = isLoading ? (
     <h1>Loading...</h1>
@@ -64,17 +64,17 @@ function Auth() {
       <h1 className={styles.formTitle}>Login</h1>
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        <label className={styles.formLabel} htmlFor="username">
-          Username:
+        <label className={styles.formLabel} htmlFor="email">
+          Email:
         </label>
         <input
           className={styles.formInput}
           color="black"
           type="text"
-          id="username"
+          id="email"
           ref={userRef}
-          value={user}
-          onChange={handleUserInput}
+          value={email}
+          onChange={handleEmailInput}
           autoComplete="off"
           required
         />
@@ -86,8 +86,8 @@ function Auth() {
           className={styles.formInput}
           type="password"
           id="password"
-          onChange={handlePwdInput}
-          value={pwd}
+          onChange={handlePasswordInput}
+          value={password}
           required
         />
         <button className={styles.formBtn}>Sign In</button>
