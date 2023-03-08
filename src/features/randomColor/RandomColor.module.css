@@ -1,0 +1,67 @@
+.colorContainer {
+   
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 30px;
+        background-color: #282c34;
+        min-width: 50vmin;
+        padding: 40px 20px;
+        border-radius: 5px;   
+        margin-top: 50px;
+}
+
+.colorValue {
+    color: white;
+}
+.spanBg {
+    background-color: rgb(255, 255, 255);
+    padding: 5px;
+    border-radius: 2px;
+    margin-left: 10px;
+    padding: 5px 10px ;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+.modifierContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+.inputColor {
+    width: 150px;
+    height: 30px;
+    /* border-radius: 5px; */
+    border: none;
+    padding: 5px 0 5px 10px;
+    font-size: 1rem;
+}
+
+.inputColorSelector {
+    width: 50px;
+    height: 40px;
+    border-radius: 3px;
+    border: none;
+    padding: 5px;
+    font-size: 1rem;
+}
+
+.sendBtn {
+    width: 150px;
+    height: 40px;
+    border-radius: 3px;
+    border: none;
+    padding: 5px;
+    font-size: 1rem;
+    background-color: white;
+    color: rgb(27, 27, 27);
+    cursor: pointer;
+    /* poppins fat */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}

@@ -1,36 +1,101 @@
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setCredentials } from './AuthSlice'
+import { useLoginMutation } from './AuthApiSlice'
 import styles from './Auth.module.css'
 
 function Auth() {
+  const userRef = useRef()
+  const errRef = useRef()
+  const [user, setUser] = useState('')
+  const [pwd, setPwd] = useState('')
+  const [errMsg, setErrMsg] = useState('')
+  const navigate = useNavigate()
 
-    const navigate = useNavigate()
+  const [login, { isLoading }] = useLoginMutation()
+  const dispatch = useDispatch()
 
-    const handleLogin = () => {
-        navigate('/main')
+  useEffect(() => {
+    userRef.current.focus()
+  }, [])
+
+  useEffect(() => {
+    setErrMsg('')
+  }, [user, pwd])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const userData = await login({ user, pwd }).unwrap()
+      dispatch(setCredentials({ ...userData, user }))
+      setUser('')
+      setPwd('')
+      navigate('/main')
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg('Server is not responding')
+      } else if (err.response?.status === 400) {
+        setErrMsg('Missing user or password')
+      } else if (err.response?.status === 401) {
+        setErrMsg('Unhauthorized')
+      } else {
+        setErrMsg('Login failed')
+      }
+      errRef.current.focus()
     }
+  }
 
-  return (
-    <div className={styles.formContainer}>
+  const handleUserInput = (e) => setUser(e.target.value)
+  const handlePwdInput = (e) => setPwd(e.target.value)
 
-        <h1 className={styles.formTitle} >Login</h1>
+  const content = isLoading ? (
+    <h1>Loading...</h1>
+  ) : (
+    <section className={styles.formContainer}>
+      <p
+        ref={errRef}
+        className={errMsg ? 'errmsg' : 'offscreen'}
+        aria-live="assertive"
+      >
+        {errMsg}
+      </p>
 
-        <form className={styles.form}>
-            <div className={styles.formGroup}>
-                <label className={styles.formLabel} htmlFor="email">Email</label>
-                <input className={styles.formInput} type="email" name="email" id="email" />
-            </div>
-            <div className={styles.formGroup}>
-                <label className={styles.formLabel} htmlFor="password">Password</label>
-                <input className={styles.formInput} type="password" name="password" id="password" />
-            </div>
-            <div className={styles.formGroup}>
-                <button className={styles.formBtn} type="submit"  onClick={() => handleLogin()}>Login</button>
-            </div>
+      <h1 className={styles.formTitle}>Login</h1>
 
-        </form>
-    </div>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <label className={styles.formLabel} htmlFor="username">
+          Username:
+        </label>
+        <input
+          className={styles.formInput}
+          color="black"
+          type="text"
+          id="username"
+          ref={userRef}
+          value={user}
+          onChange={handleUserInput}
+          autoComplete="off"
+          required
+        />
+
+        <label className={styles.formLabel} htmlFor="password">
+          Password:
+        </label>
+        <input
+          className={styles.formInput}
+          type="password"
+          id="password"
+          onChange={handlePwdInput}
+          value={pwd}
+          required
+        />
+        <button className={styles.formBtn}>Sign In</button>
+      </form>
+    </section>
   )
+
+  return content
 }
 
 export default Auth

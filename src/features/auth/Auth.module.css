@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 20px;
+    /* row-gap: 20px; */
 }
 
 .formTitle {
@@ -13,7 +13,9 @@
     font-size: 2rem;
     font-weight: 700;
     width: 300px;
-    margin-top: 30px;
+    margin: 0;
+    margin-bottom: 30px;
+    /* margin-top: 30px; */
 }
 
 .form {
@@ -43,7 +45,7 @@
     box-sizing: border-box;
     height: 40px;
     width: 300px;
-    color: white;
+    color: rgb(20, 20, 20);
     border: 1px solid white;
     font-size: 1rem;
     padding-left: 10px;

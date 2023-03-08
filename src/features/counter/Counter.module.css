@@ -1,0 +1,67 @@
+.counterContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 30px;
+    background-color: #282c34;
+    min-width: 50vmin;
+    padding: 20px;
+    height: 50vmin;
+    border-radius: 20px;
+}
+
+.counterValueContainer {
+    display: flex;
+    column-gap: 30px;
+    align-items: center;
+}
+
+.counterBtn {
+    background-color: #ffffff;
+    color: rgb(36, 36, 36);
+    border-radius: 3px;
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+    cursor: pointer;
+    border: none;
+}
+
+/* onclick on counter button rotate 180 deg countervalue */
+.counterBtn:active {
+    transform: rotate(190deg);
+}
+
+.counterValue {
+    font-size: 5rem;
+    color: #ffffff;
+}
+
+.counterChangeInput {
+    width: 40vmin;
+    height: 50px;
+    font-size: 2rem;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    background-color: #ffffff;
+    color: rgb(36, 36, 36);
+}
+
+.hardBtnContainer {
+    width: 80%;
+    display: flex;
+    column-gap: 30px;
+}
+
+.hardBtn {
+    width: 50%;
+    height: 80px;
+    background-color: white;
+    /* fontfam poppins */
+    border: none;
+    font-weight: 500;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+}
