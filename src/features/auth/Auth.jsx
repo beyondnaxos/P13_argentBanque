@@ -4,6 +4,9 @@ import { useDispatch } from 'react-redux'
 import { setCredentials } from './AuthSlice'
 import { useLoginMutation } from './AuthApiSlice'
 import styles from './Auth.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import fa user circle from '@fortawesome/free-solid-svg-icons'
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 function Auth() {
   const userRef = useRef()
@@ -29,7 +32,7 @@ function Auth() {
     try {
       const userData = await login({ email, password }).unwrap()
       console.log(userData.body.token)
-      dispatch(setCredentials({ email , accessToken : userData.body.token }))
+      dispatch(setCredentials({ email, accessToken: userData.body.token }))
       setEmail('')
       setPassword('')
       navigate('/main')
@@ -53,45 +56,76 @@ function Auth() {
   const content = isLoading ? (
     <h1>Loading...</h1>
   ) : (
-    <section className={styles.formContainer}>
-      <p
+    //  <section class="sign-in-content">
+    //     <i class="fa fa-user-circle sign-in-icon"></i>
+    //     <h1>Sign In</h1>
+    //     <form>
+    //       <div class="input-wrapper">
+    //         <label for="username">Username</label
+    //         ><input type="text" id="username" />
+    //       </div>
+    //       <div class="input-wrapper">
+    //         <label for="password">Password</label
+    //         ><input type="password" id="password" />
+    //       </div>
+    //       <div class="input-remember">
+    //         <input type="checkbox" id="remember-me" /><label for="remember-me"
+    //           >Remember me</label
+    //         >
+    //       </div>
+    //       <!-- PLACEHOLDER DUE TO STATIC SITE -->
+    //       <a href="./user.html" class="sign-in-button">Sign In</a>
+    //       <!-- SHOULD BE THE BUTTON BELOW -->
+    //       <!-- <button class="sign-in-button">Sign In</button> -->
+    //       <!--  -->
+    //     </form>
+    //   </section>
+    <section className="sign-in-content">
+      {/* <p
         ref={errRef}
         className={errMsg ? 'errmsg' : 'offscreen'}
         aria-live="assertive"
       >
         {errMsg}
-      </p>
+      </p> */}
 
-      <h1 className={styles.formTitle}>Login</h1>
+      <FontAwesomeIcon icon={faUserCircle} className="sign-in-icon" />
+      {/* <i class="fa fa-user-circle sign-in-icon"></i> */}
+      <h1 className={styles.formTitle}>Sign In</h1>
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        <label className={styles.formLabel} htmlFor="email">
-          Email:
-        </label>
-        <input
-          className={styles.formInput}
-          color="black"
-          type="text"
-          id="email"
-          ref={userRef}
-          value={email}
-          onChange={handleEmailInput}
-          autoComplete="off"
-          required
-        />
+        <div className="input-wrapper">
+          <label htmlFor="email">Username</label>
+          <input
+            className={styles.formInput}
+            color="black"
+            type="text"
+            id="email"
+            ref={userRef}
+            value={email}
+            onChange={handleEmailInput}
+            autoComplete="off"
+            required
+          />
+        </div>
 
-        <label className={styles.formLabel} htmlFor="password">
-          Password:
-        </label>
-        <input
-          className={styles.formInput}
-          type="password"
-          id="password"
-          onChange={handlePasswordInput}
-          value={password}
-          required
-        />
-        <button className={styles.formBtn}>Sign In</button>
+        <div className="input-wrapper">
+          <label htmlFor="password">Password</label>
+          <input
+            className={styles.formInput}
+            type="password"
+            id="password"
+            onChange={handlePasswordInput}
+            value={password}
+            required
+          />
+        </div>
+        <div className="input-remember">
+          <input type="checkbox" id="remember-me" />
+          <label htmlFor="remember-me">Remember me</label>
+        </div>
+        {/* <button className={styles.formBtn}>Sign In</button> */}
+        <button className="sign-in-button">Sign In</button>
       </form>
     </section>
   )

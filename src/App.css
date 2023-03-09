@@ -17,6 +17,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   /* color: #2c3e50; */
+  color: #2c3e50;
   /* color: #2c3e50; */
 }
 
@@ -42,7 +43,7 @@ body {
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
 
 }
 
@@ -207,7 +208,7 @@ body {
 }
 
 .sign-in-icon {
-  font-size: 5rem;
+  font-size: 16px !important;
 }
 
 .input-remember {
