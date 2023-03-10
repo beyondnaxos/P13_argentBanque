@@ -28,7 +28,7 @@ const Nav = () => {
           dispatch(logOut())
           navigate('/')
         }}>
-          <i class="fa fa-sign-out"></i>
+          <i className="fa fa-sign-out"></i>
           Sign Out
         </a>
         ) : (
