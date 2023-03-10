@@ -10,6 +10,7 @@ const authSlice = createSlice({
     setCredentials: (state, action) => {
         const {email, accessToken} = action.payload
         console.log(accessToken)
+        localStorage.setItem('token', accessToken)
         state.email = email
         state.token = accessToken
     },

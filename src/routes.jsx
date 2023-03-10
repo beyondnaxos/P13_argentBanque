@@ -27,7 +27,7 @@ export function Routing(props) {
           {/* private Routes */}
           <Route element={<RequireAuth />}>
             {/* <Route path="main" element={<Welcome />} /> */}
-            <Route path="main" element={<Index />} />
+            <Route index path="main" element={<Index />} />
             {/* <Route path="main" element={<Main />} /> */}
           </Route>
         </Route>
