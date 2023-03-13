@@ -9,6 +9,7 @@ const Nav = () => {
   const dispatch = useDispatch()
 
   const token = localStorage.getItem('token')
+  
   return (
     <nav className="main-nav">
       <a className="main-nav-logo" href="./index.html">
@@ -32,7 +33,7 @@ const Nav = () => {
           Sign Out
         </a>
         ) : (
-        <a className="main-nav-item" href="./">
+        <a className="main-nav-item" href="./login">
           <i className="fa fa-user-circle"></i>
           Sign In
         </a>

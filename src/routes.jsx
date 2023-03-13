@@ -1,38 +1,37 @@
 import { Routes, Route } from 'react-router-dom'
 import React from 'react'
-import Main from './Pages/Main'
 import Public from './components/Public'
 import Layout from './components/Layout'
 import Login from './features/auth/Auth'
-import Welcome from './features/auth/Welcome'
 import RequireAuth from './features/auth/RequireAuth'
 import Index from './Pages/Index'
 import Nav from './components/Nav/Nav'
 import Footer from './components/Footer/Footer'
+import { useSelector } from 'react-redux'
+import { selectCurrentToken } from './features/auth/AuthSlice'
 
 /**
  * If the user is not logged in, show the login page, otherwise show the dashboard.
  */
 
 export function Routing(props) {
+  const token = useSelector(selectCurrentToken)
+
   return (
     <>
       <Nav />
-      <main className="main bg-dark">
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          {/* public Routes */}
-          <Route index element={<Login />} />
-          {/* <Route path="login" element={<Public />} /> */}
-          {/* private Routes */}
-          <Route element={<RequireAuth />}>
-            {/* <Route path="main" element={<Welcome />} /> */}
-            <Route index path="main" element={<Index />} />
-            {/* <Route path="main" element={<Main />} /> */}
+      
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            {/* public Routes */}
+            <Route index element={<Public />} />
+            <Route path="login" element={<Login />} />
+            {/* private Routes */}
+            <Route element={<RequireAuth />}>
+              <Route index path="main" element={<Index />} />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
-      </main>
+        </Routes>
       <Footer />
     </>
   )
