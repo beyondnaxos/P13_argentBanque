@@ -1,15 +1,21 @@
 import React from 'react'
 import { logOut } from '../../features/auth/AuthSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { selectCurrentFirstname, selectCurrentLastname } from '../../features/user/userSlice'
+// import { useSelector } from 'react-redux'
+// import { selectCurrentToken } from '../../features/auth/AuthSlice'
 
 const Nav = () => {
 
+  const userFirstname = useSelector(selectCurrentFirstname)
+  const userLastname = useSelector(selectCurrentLastname)
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
+  // const token = useSelector(selectCurrentToken)
   const token = localStorage.getItem('token')
-  
+
   return (
     <nav className="main-nav">
       <a className="main-nav-logo" href="./index.html">
@@ -23,17 +29,17 @@ const Nav = () => {
         <h1 className="sr-only">Argent Bank</h1>
       </a>
       <div>
-        {/* toke ?  */}
+        <p>{userFirstname} {userLastname}</p>
         {token ? (
-        <a className="main-nav-item" href="./" onClick={() => {
+        <span role='button' className="main-nav-item" onClick={() => {
           dispatch(logOut())
           navigate('/')
         }}>
           <i className="fa fa-sign-out"></i>
           Sign Out
-        </a>
+        </span>
         ) : (
-        <a className="main-nav-item" href="./login">
+        <a className="main-nav-item" href="/login">
           <i className="fa fa-user-circle"></i>
           Sign In
         </a>

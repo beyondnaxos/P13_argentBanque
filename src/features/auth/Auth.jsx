@@ -36,6 +36,7 @@ function Auth() {
       setEmail('')
       setPassword('')
       navigate('/main')
+      localStorage.setItem('token', userData.body.token);
 
     } catch (err) {
       if (!err?.response) {

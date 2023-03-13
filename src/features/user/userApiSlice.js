@@ -2,18 +2,26 @@ import { apiSlice } from '../../app/api/apiSlice'
 import { useSelector } from 'react-redux'
 import { selectCurrentToken } from '../auth/AuthSlice'
 
-const token = useSelector(selectCurrentToken)
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation({
+    getUserData: builder.mutation({
+      query: () => ({
+        url: '/user/profile',
+        method: 'POST',
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      }),
+    }),
+    UpdateUserData: builder.mutation({
       query: (credentials) => ({
         url: '/user/profile',
         method: 'PUT',
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         body: { ...credentials },
       }),
-    }),
+    })
   }),
 })
 
-export const { useLoginMutation } = userApiSlice
+
+export const { useGetUserDataMutation, useUpdateUserDataMutation } = userApiSlice
+

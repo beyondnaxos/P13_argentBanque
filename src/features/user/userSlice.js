@@ -11,7 +11,8 @@ const userSlice = createSlice({
         const {firstname, lastname} = action.payload
         state.firstname = firstname
         state.lastname = lastname
-    }
+        console.log(state.firstname)
+      }
   },
 })
 
