@@ -1,9 +1,9 @@
 import React from 'react'
 import { Account } from '../components/Account/Account'
 import { Header } from '../components/Header/Header'
-import styles from './Index.module.css'
+import styles from './User.module.css'
 
-const Index = () => {
+const User = () => {
   return (
     <main className="main bg-dark">
       <div className={styles.profilContainer}>
@@ -29,4 +29,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default User

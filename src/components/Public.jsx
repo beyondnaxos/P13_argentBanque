@@ -7,7 +7,6 @@ import { Features } from './Features/Features'
 import Hero from './Hero/Hero'
 
 const Public = () => {
-  const token = useSelector(selectCurrentToken)
 
   return (
     <main>

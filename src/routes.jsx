@@ -4,7 +4,7 @@ import Public from './components/Public'
 import Layout from './components/Layout'
 import Login from './features/auth/Auth'
 import RequireAuth from './features/auth/RequireAuth'
-import Index from './Pages/Index'
+import User from './Pages/User'
 import Nav from './components/Nav/Nav'
 import Footer from './components/Footer/Footer'
 import { useSelector } from 'react-redux'
@@ -28,7 +28,7 @@ export function Routing(props) {
             <Route path="login" element={<Login />} />
             {/* private Routes */}
             <Route element={<RequireAuth />}>
-              <Route index path="main" element={<Index />} />
+              <Route index path="main" element={<User />} />
             </Route>
           </Route>
         </Routes>
