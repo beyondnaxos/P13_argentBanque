@@ -4,3 +4,33 @@
     justify-content: space-between;
     max-width: 250px;
 } */
+
+.editContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    row-gap: 20px;
+}
+
+.inputs {
+    display: flex;
+    justify-content: center;
+    column-gap: 20px ;
+}
+
+.input {
+    width: 250px;
+    height: 30px;
+}
+
+.toggledButtons {
+    display: flex;
+    justify-content: center;
+    column-gap: 20px;
+}
+
+.editButton {
+    width: 200px;
+    height: 30px;
+}

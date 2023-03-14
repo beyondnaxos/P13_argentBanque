@@ -6,6 +6,7 @@ import {
   selectCurrentFirstname,
   selectCurrentLastname,
 } from '../../features/user/userSlice'
+import styles from './Nav.module.css'
 // import { useSelector } from 'react-redux'
 // import { selectCurrentToken } from '../../features/auth/AuthSlice'
 
@@ -30,9 +31,9 @@ const Nav = () => {
         />
         <h1 className="sr-only">Argent Bank</h1>
       </a>
-      <div>
+      <div className={styles.logContainer}>
         <p>
-          {userFirstname} {userLastname}
+          {userFirstname} {" "} {userLastname}
         </p>
         {token ? (
           <span

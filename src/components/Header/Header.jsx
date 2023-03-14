@@ -1,15 +1,15 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { selectCurrentFirstname, selectCurrentLastname } from '../../features/user/userSlice'
+import {
+  selectCurrentFirstname,
+  selectCurrentLastname,
+} from '../../features/user/userSlice'
 import styles from './Header.module.css'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../../features/user/userSlice'
 import { useUpdateUserDataMutation } from '../../features/user/userApiSlice'
 
-
-
 export const Header = () => {
-
   const [firstName, setFirstName] = React.useState('')
   const [lastName, setLastName] = React.useState('')
   const dispatch = useDispatch()
@@ -21,15 +21,16 @@ export const Header = () => {
 
   const [updateDatas] = useUpdateUserDataMutation()
 
-
   const sendCredentials = async () => {
-    const updateUserDatas = await updateDatas({firstName, lastName}).unwrap()
+    const updateUserDatas = await updateDatas({ firstName, lastName }).unwrap()
     dispatch(
-      setCredentials({ firstname: updateUserDatas.body.firstName, lastname: updateUserDatas.body.lastName })
+      setCredentials({
+        firstname: updateUserDatas.body.firstName,
+        lastname: updateUserDatas.body.lastName,
+      })
     )
     toggle()
   }
-
 
   const toggle = () => {
     setEditMode(!editMode)
@@ -40,30 +41,39 @@ export const Header = () => {
       <h1>
         Welcome back
         <br />
-        {userFirstname} {userLastname}
+        {userFirstname} {" "}{userLastname}
       </h1>
       {editMode ? (
-        <div className="header-name">
-          <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            
-          />
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
+        <div className={styles.editContainer}>
+          <div className={styles.inputs}>
+            <input
+              className={styles.input}
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+            <input
+              className={styles.input}
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
           <div className={styles.toggledButtons}>
-          <button className="edit-button" onClick={() => sendCredentials()}>Save</button>
-          <button className="edit-button" onClick={() => toggle()}>Cancel</button>
+            <button className={styles.editButton} onClick={() => sendCredentials()}>
+              Save
+            </button>
+            <button className={styles.editButton}  onClick={() => toggle()}>
+              Cancel
+            </button>
           </div>
         </div>
       ) : null}
-      <button className="edit-button" onClick={() => toggle()}>
-        Edit Name
-      </button>
+      {!editMode ? (
+        <button className="edit-button" onClick={() => toggle()}>
+          Edit Name
+        </button>
+      ) : null}
     </div>
   )
 }
