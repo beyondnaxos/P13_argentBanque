@@ -32,9 +32,11 @@ const Nav = () => {
         <h1 className="sr-only">Argent Bank</h1>
       </a>
       <div className={styles.logContainer}>
-        <p>
-          {userFirstname} {" "} {userLastname}
-        </p>
+        {token ? (
+          <p>
+            {userFirstname + ' '} {userLastname}
+          </p>
+        ) : null}
         {token ? (
           <span
             role="button"

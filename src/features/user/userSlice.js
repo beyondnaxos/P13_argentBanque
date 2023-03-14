@@ -20,5 +20,9 @@ export const { setCredentials } = userSlice.actions
 
 export default userSlice.reducer
 
-export const selectCurrentFirstname = (state) => state.user.firstname
-export const selectCurrentLastname = (state) => state.user.lastname
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export const selectCurrentFirstname = (state) => capitalizeFirstLetter(state.user.firstname)
+export const selectCurrentLastname = (state) => capitalizeFirstLetter(state.user.lastname)
