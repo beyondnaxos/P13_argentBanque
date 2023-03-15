@@ -21,7 +21,7 @@ const Nav = () => {
 
   return (
     <nav className="main-nav">
-      <a className="main-nav-logo" href="./index.html">
+      <span role='button' className="main-nav-logo" onClick={() => navigate("/")}>
         <img
           className="main-nav-logo-image"
           //   src="./img/argentBankLogo.png"
@@ -30,29 +30,28 @@ const Nav = () => {
           alt="Argent Bank Logo"
         />
         <h1 className="sr-only">Argent Bank</h1>
-      </a>
+      </span>
       <div className={styles.logContainer}>
-       
         {token ? (
           <>
-           <p>
-            {userFirstname + ' '} {userLastname}
-          </p>
-          <span
-            role="button"
-            className="main-nav-item"
-            onClick={() => {
-              dispatch(logOut())
-              navigate('/')
-            }}
-          >
-            <i className="fa fa-sign-out"></i>
-            Sign Out
-          </span>
+            <span role="button" onClick={() => navigate('/profile')} className={styles.userNameLink}>
+            <i className="fa fa-user-circle" style={{ 'marginRight': 4 }}></i>  { '  ' + userFirstname + ' '} {userLastname}
+            </span>
+            <span
+              role="button"
+              className="main-nav-item"
+              onClick={() => {
+                dispatch(logOut())
+                navigate('/')
+              }}
+            >
+              <i className="fa fa-sign-out" style={{ 'marginRight': 4 }}></i>
+              Sign Out
+            </span>
           </>
         ) : (
           <a className="main-nav-item" href="/login">
-            <i className="fa fa-user-circle"></i>
+            <i className="fa fa-user-circle" style={{ 'marginRight': 4 }}></i>
             Sign In
           </a>
         )}

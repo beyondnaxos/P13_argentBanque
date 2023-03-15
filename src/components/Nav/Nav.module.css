@@ -3,3 +3,12 @@
     align-items: center;
     column-gap: 20px;
 }
+
+.userNameLink {
+    cursor: pointer;
+}
+
+.userNameLink:hover {
+    text-decoration: underline;
+    font-weight: 500;
+}

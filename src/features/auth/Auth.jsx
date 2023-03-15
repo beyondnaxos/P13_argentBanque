@@ -35,7 +35,7 @@ function Auth() {
       dispatch(setCredentials({ email, accessToken: userData.body.token }))
       setEmail('')
       setPassword('')
-      navigate('/main')
+      navigate('/profile')
       localStorage.setItem('token', userData.body.token);
 
     } catch (err) {
