@@ -32,12 +32,12 @@ const Nav = () => {
         <h1 className="sr-only">Argent Bank</h1>
       </a>
       <div className={styles.logContainer}>
+       
         {token ? (
-          <p>
+          <>
+           <p>
             {userFirstname + ' '} {userLastname}
           </p>
-        ) : null}
-        {token ? (
           <span
             role="button"
             className="main-nav-item"
@@ -49,6 +49,7 @@ const Nav = () => {
             <i className="fa fa-sign-out"></i>
             Sign Out
           </span>
+          </>
         ) : (
           <a className="main-nav-item" href="/login">
             <i className="fa fa-user-circle"></i>

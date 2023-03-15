@@ -1,12 +1,27 @@
-import { Link, Navigate } from 'react-router-dom'
-import styles from './Public.module.css'
-// token
-import { useSelector } from 'react-redux'
-import { selectCurrentToken } from '../features/auth/AuthSlice'
+import { useEffect } from 'react'
 import { Features } from './Features/Features'
 import Hero from './Hero/Hero'
+import { useDispatch } from 'react-redux'
+import { setCredentials } from '../features/user/userSlice'
+import { useGetUserDataMutation } from '../features/user/userApiSlice'
 
 const Public = () => {
+
+  const dispatch = useDispatch()
+
+  const [getUserData ] = useGetUserDataMutation()
+
+  useEffect(() => {
+    getUserDatas()
+  }, [])
+
+  const getUserDatas = async () => {
+    const userData = await getUserData({}).unwrap()
+    console.log(userData.body.firstName)
+    dispatch(
+      setCredentials({ firstname: userData.body.firstName, lastname: userData.body.lastName })
+    )
+  }
 
   return (
     <main>
@@ -14,6 +29,7 @@ const Public = () => {
       <Features />
     </main>
   )
+  
 }
 
 export default Public

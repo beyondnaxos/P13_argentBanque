@@ -52,6 +52,8 @@ function Auth() {
     }
   }
 
+  // if remerme is checked then save the token in local storage otherwise remove it
+
   const handleEmailInput = (e) => setEmail(e.target.value)
   const handlePasswordInput = (e) => setPassword(e.target.value)
 
