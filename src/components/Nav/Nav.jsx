@@ -10,6 +10,7 @@ import styles from './Nav.module.css'
 // import { useSelector } from 'react-redux'
 // import { selectCurrentToken } from '../../features/auth/AuthSlice'
 
+
 const Nav = () => {
   const userFirstname = useSelector(selectCurrentFirstname)
   const userLastname = useSelector(selectCurrentLastname)
