@@ -19,9 +19,9 @@ function Auth() {
 
   const handleChange = (event) => {
     if (event.target.checked) {
-      console.log('✅ Checkbox is checked')
+      console.log('Checkbox is checked')
     } else {
-      console.log('⛔️ Checkbox is NOT checked')
+      console.log('Checkbox is NOT checked')
     }
     setIsChecked((current) => !current)
   }
