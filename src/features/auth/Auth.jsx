@@ -49,6 +49,9 @@ function Auth() {
       if (isChecked) {
         localStorage.setItem('token', userData.body.token)
       }
+      if (!isChecked) {
+        localStorage.removeItem('token')
+      }
     } catch (err) {
       if (!err?.response) {
         setErrMsg('Server is not responding')

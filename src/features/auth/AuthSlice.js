@@ -12,8 +12,7 @@ const authSlice = createSlice({
         console.log(accessToken)
         // localStorage.setItem('token', accessToken)
         state.email = email
-        state.token = accessToken
-        // state.token = !localStorage.getItem('token') ?  accessToken : localStorage.getItem('token', accessToken)
+        state.token = accessToken || localStorage.getItem('token')
     },
     logOut : (state, action) => {
         localStorage.removeItem('token')

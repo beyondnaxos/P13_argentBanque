@@ -7,8 +7,7 @@ import {
   selectCurrentLastname,
 } from '../../features/user/userSlice'
 import styles from './Nav.module.css'
-// import { useSelector } from 'react-redux'
-// import { selectCurrentToken } from '../../features/auth/AuthSlice'
+import { selectCurrentToken } from '../../features/auth/AuthSlice'
 
 
 const Nav = () => {
@@ -17,8 +16,8 @@ const Nav = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  // const token = useSelector(selectCurrentToken)
-  const token = localStorage.getItem('token')
+  const token = useSelector(selectCurrentToken)
+  // const token = localStorage.getItem('token')
 
   return (
     <nav className="main-nav">
