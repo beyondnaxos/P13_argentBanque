@@ -8,14 +8,14 @@ export const userApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: '/user/profile',
         method: 'POST',
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        headers: { Authorization: `Bearer ${localStorage.getItem('token') || sessionStorage.getItem('token')}` }
       }),
     }),
     UpdateUserData: builder.mutation({
       query: (credentials) => ({
         url: '/user/profile',
         method: 'PUT',
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem('token') || sessionStorage.getItem('token')}` },
         body: { ...credentials },
       }),
     })

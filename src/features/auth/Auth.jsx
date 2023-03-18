@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate , Navigate} from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from './AuthSlice'
 import { useLoginMutation } from './AuthApiSlice'
@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 function Auth() {
+  const token = localStorage.getItem('token') || sessionStorage.getItem('token')
   const userRef = useRef()
   const errRef = useRef()
   const [isChecked, setIsChecked] = useState(false)
@@ -16,6 +17,10 @@ function Auth() {
   const [password, setPassword] = useState('')
   const [errMsg, setErrMsg] = useState('')
   const navigate = useNavigate()
+
+  if (token) {
+    return <Navigate to="/profile" />
+  } 
 
   const handleChange = (event) => {
     if (event.target.checked) {
@@ -37,6 +42,8 @@ function Auth() {
     setErrMsg('')
   }, [email, password])
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
@@ -48,6 +55,11 @@ function Auth() {
       navigate('/profile')
       if (isChecked) {
         localStorage.setItem('token', userData.body.token)
+        sessionStorage.removeItem('token')
+      }
+      if (!isChecked) {
+        sessionStorage.setItem('token', userData.body.token)
+        localStorage.removeItem('token')
       }
     } catch (err) {
       if (!err?.response) {
@@ -69,6 +81,7 @@ function Auth() {
   const handlePasswordInput = (e) => setPassword(e.target.value)
 
 
+  
 
   const content = isLoading ? (
     <h1>Loading...</h1>
@@ -85,12 +98,12 @@ function Auth() {
             <input
               className={styles.formInput}
               color="black"
-              type="text"
+              type="email"
               id="email"
               ref={userRef}
               value={email}
               onChange={handleEmailInput}
-              autoComplete="off"
+              autoComplete="on"
               required
             />
           </div>

@@ -15,7 +15,7 @@ import { selectCurrentToken } from './features/auth/AuthSlice'
  */
 
 export function Routing(props) {
-  const token = useSelector(selectCurrentToken)
+
 
   return (
     <>
@@ -25,6 +25,7 @@ export function Routing(props) {
           <Route path="/" element={<Layout />}>
             {/* public Routes */}
             <Route index element={<Public />} />
+            
             <Route path="login" element={<Login />} />
             {/* private Routes */}
             <Route element={<RequireAuth />}>
