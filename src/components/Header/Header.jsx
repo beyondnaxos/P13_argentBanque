@@ -22,6 +22,9 @@ export const Header = () => {
   const [updateDatas] = useUpdateUserDataMutation()
 
   const sendCredentials = async () => {
+    if (firstName === '' || lastName === '') {
+      return alert('Please fill all the fields')
+    }
     const updateUserDatas = await updateDatas({ firstName, lastName }).unwrap()
     dispatch(
       setCredentials({
@@ -31,6 +34,11 @@ export const Header = () => {
     )
     toggle()
   }
+
+  
+  
+
+
 
   const toggle = () => {
     setEditMode(!editMode)
@@ -51,12 +59,14 @@ export const Header = () => {
               type="text"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-            />
+              required={true}
+              />
             <input
               className={styles.input}
               type="text"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
+              required={true}             
             />
           </div>
           <div className={styles.toggledButtons}>
