@@ -22,7 +22,7 @@ const User = () => {
   const getUserDatas = async () => {
     const userData = await getUserData({}).unwrap()
     // console.log(userData.body.firstName)
-    console.log('clg de david ' , userData)
+    
     dispatch(
       setCredentials({ firstname: userData.body.firstName, lastname: userData.body.lastName })
     )
