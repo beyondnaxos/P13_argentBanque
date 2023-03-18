@@ -2,12 +2,12 @@ import React from 'react'
 import { logOut } from '../../features/auth/AuthSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { selectCurrentToken } from '../../features/auth/AuthSlice'
 import {
   selectCurrentFirstname,
   selectCurrentLastname,
 } from '../../features/user/userSlice'
 import styles from './Nav.module.css'
-import { selectCurrentToken } from '../../features/auth/AuthSlice'
 
 
 const Nav = () => {
@@ -16,9 +16,9 @@ const Nav = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const token = useSelector(selectCurrentToken)
-  // const token = localStorage.getItem('token')
-
+  const token = sessionStorage.getItem('token') ??  localStorage.getItem('token')
+  
+  
   return (
     <nav className="main-nav">
       <span role='button' className="main-nav-logo" onClick={() => navigate("/")}>
