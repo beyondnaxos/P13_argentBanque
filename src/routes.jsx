@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import React from 'react'
 import Public from './components/Public'
 import Layout from './components/Layout'
@@ -11,10 +12,16 @@ import { useSelector } from 'react-redux'
 import { selectCurrentToken } from './features/auth/AuthSlice'
 
 /**
- * If the user is not logged in, show the login page, otherwise show the dashboard.
+ * 
+ * @param {*} props 
+ * @returns 
+ * @component
+ * @name Routing
+ * @description A component that handles the routing of the application.
+ * @example <Routing />
  */
 
-export function Routing(props) {
+export function Routing() {
 
 
   return (

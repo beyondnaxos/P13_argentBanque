@@ -5,6 +5,14 @@ import { useDispatch } from 'react-redux'
 import { setCredentials } from '../features/user/userSlice'
 import { useGetUserDataMutation } from '../features/user/userApiSlice'
 
+/**
+ * @returns {JSX.Element} A JSX Public component.
+ * @component
+ * @name Public
+ * @description A component that displays a public section with a hero and features.
+ * @example <Public />
+ */
+
 const Public = () => {
 
   const dispatch = useDispatch()

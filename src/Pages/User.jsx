@@ -4,16 +4,19 @@ import { Header } from '../components/Header/Header'
 import styles from './User.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useGetUserDataMutation } from '../features/user/userApiSlice'
-import { selectCurrentFirstname, setCredentials } from '../features/user/userSlice'
-import { selectCurrentToken } from '../features/auth/AuthSlice'
+import { setCredentials } from '../features/user/userSlice'
+
+/**
+ * @returns {JSX.Element} A JSX User component.
+ * @component
+ * @name User
+ * @description A component that displays a user section with a header and accounts.
+ * @example <User />
+ */
 
 const User = () => {
-
-  // const token = useSelector(selectCurrentToken)
-
   const dispatch = useDispatch()
-
-  const [getUserData ] = useGetUserDataMutation()
+  const [getUserData] = useGetUserDataMutation()
 
   useEffect(() => {
     getUserDatas()
@@ -21,14 +24,13 @@ const User = () => {
 
   const getUserDatas = async () => {
     const userData = await getUserData({}).unwrap()
-    // console.log(userData.body.firstName)
-    
     dispatch(
-      setCredentials({ firstname: userData.body.firstName, lastname: userData.body.lastName })
+      setCredentials({
+        firstname: userData.body.firstName,
+        lastname: userData.body.lastName,
+      })
     )
-
   }
-
 
   return (
     <main className="main bg-dark">

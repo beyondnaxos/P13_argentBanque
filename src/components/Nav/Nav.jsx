@@ -9,6 +9,14 @@ import {
 } from '../../features/user/userSlice'
 import styles from './Nav.module.css'
 
+/**
+ * @returns {JSX.Element} A JSX Nav component.
+ * @component
+ * @name Nav
+ * @description A component that displays a navigation bar with a logo, a link to the profile page, and a link to the login page.
+ * @example <Nav />
+ */
+
 
 const Nav = () => {
   const userFirstname = useSelector(selectCurrentFirstname)

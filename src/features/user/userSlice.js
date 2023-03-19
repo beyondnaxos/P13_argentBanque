@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+/**
+ * @type {import('@reduxjs/toolkit').ConfigureStoreOptions}
+ * @description This function create slice for user.
+ * @see https://redux-toolkit.js.org/api/createSlice
+ */
+
 const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -11,7 +17,6 @@ const userSlice = createSlice({
         const {firstname, lastname} = action.payload
         state.firstname = firstname
         state.lastname = lastname
-        console.log(state.firstname)
       }
   },
 })
@@ -24,7 +29,5 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-// export const selectCurrentFirstname = (state) => state.user.firstname
-// export const selectCurrentLastname = (state) => state.user.lastname
 export const selectCurrentFirstname = (state) => state.user.firstname && capitalizeFirstLetter(state.user.firstname)
 export const selectCurrentLastname = (state) => state.user.lastname && capitalizeFirstLetter(state.user.lastname)

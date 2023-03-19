@@ -1,6 +1,14 @@
 import React from 'react'
 import { Feature } from '../Feature/Feature'
 
+/**
+ * @returns {JSX.Element} A JSX Features component.
+ * @component
+ * @name Features
+ * @description A component that displays a features section with three Feature components.
+ * @example <Features />
+ */
+
 export const Features = () => {
   return (
     <section className="features">

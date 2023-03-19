@@ -1,12 +1,20 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { useNavigate , Navigate} from 'react-router-dom'
+import { useNavigate, Navigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from './AuthSlice'
 import { useLoginMutation } from './AuthApiSlice'
 import styles from './Auth.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import fa user circle from '@fortawesome/free-solid-svg-icons'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+
+/**
+ * 
+ * @returns {JSX.Element} A JSX Auth component.
+ * @component
+ * @name Auth
+ * @description A component that displays a login form.
+ * @example <Auth />
+ */
 
 function Auth() {
   const token = localStorage.getItem('token') || sessionStorage.getItem('token')
@@ -20,7 +28,7 @@ function Auth() {
 
   if (token) {
     return <Navigate to="/profile" />
-  } 
+  }
 
   const handleChange = (event) => {
     if (event.target.checked) {
@@ -42,13 +50,10 @@ function Auth() {
     setErrMsg('')
   }, [email, password])
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       const userData = await login({ email, password }).unwrap()
-      console.log(userData.body.token)
       dispatch(setCredentials({ email, accessToken: userData.body.token }))
       setEmail('')
       setPassword('')
@@ -75,13 +80,8 @@ function Auth() {
     }
   }
 
-  // if remerme is checked then save the token in local storage otherwise remove it
-
   const handleEmailInput = (e) => setEmail(e.target.value)
   const handlePasswordInput = (e) => setPassword(e.target.value)
-
-
-  
 
   const content = isLoading ? (
     <h1>Loading...</h1>

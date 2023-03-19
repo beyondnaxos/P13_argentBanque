@@ -1,5 +1,13 @@
 import React from 'react'
 
+/**
+  * @component
+  * @name Hero
+  * @description A component that displays a hero section with a title, subtitle, and text.
+  * @example <Hero />
+  * @returns {JSX.Element} A JSX Hero component.
+*/
+
 const Hero = () => {
   return (
     <div className="hero">

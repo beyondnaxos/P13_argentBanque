@@ -9,6 +9,14 @@ import { useDispatch } from 'react-redux'
 import { setCredentials } from '../../features/user/userSlice'
 import { useUpdateUserDataMutation } from '../../features/user/userApiSlice'
 
+/** 
+  @component
+  @name Header
+  @description A component that displays the user's firstname and lastname.
+  @example <Header />
+  @returns {JSX.Element} A JSX Header component.
+*/
+
 export const Header = () => {
   const [firstName, setFirstName] = React.useState('')
   const [lastName, setLastName] = React.useState('')
@@ -34,11 +42,6 @@ export const Header = () => {
     )
     toggle()
   }
-
-  
-  
-
-
 
   const toggle = () => {
     setEditMode(!editMode)

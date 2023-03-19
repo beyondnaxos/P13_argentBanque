@@ -1,16 +1,32 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
+/**
+ * @returns 
+ * @component
+ * @name Account
+ * @description A component that displays an account item with a title, amount, description, and a button.
+ * @example <Account />
+ */
 
 export const Account = ({ title, amount, description }) => {
   return (
     <section className="account">
-    <div className="account-content-wrapper">
-      <h3 className="account-title">{title}</h3>
-      <p className="account-amount">{amount}</p>
-      <p className="account-amount-description">{description}</p>
-    </div>
-    <div className="account-content-wrapper cta">
-      <button className="transaction-button">View transactions</button>
-    </div>
-  </section>
+      <div className="account-content-wrapper">
+        <h3 className="account-title">{title}</h3>
+        <p className="account-amount">{amount}</p>
+        <p className="account-amount-description">{description}</p>
+      </div>
+      <div className="account-content-wrapper cta">
+        <button className="transaction-button">View transactions</button>
+      </div>
+    </section>
   )
 }
+
+Account.propTypes = {
+  title: PropTypes.string.isRequired,
+  amount: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+}
+

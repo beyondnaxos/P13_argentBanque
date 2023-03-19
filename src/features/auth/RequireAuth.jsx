@@ -1,6 +1,13 @@
 import { useLocation, Navigate, Outlet } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { selectCurrentToken } from './AuthSlice'
+
+/**
+ * 
+ * @returns {JSX.Element} A JSX RequireAuth component.
+ * @component
+ * @name RequireAuth
+ * @description A component that displays a layout section with a header, main, and footer.
+ * @example <RequireAuth />
+ */
 
 const RequireAuth = () => {
   const token = localStorage.getItem('token') || sessionStorage.getItem('token')

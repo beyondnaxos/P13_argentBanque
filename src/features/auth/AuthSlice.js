@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+/**
+ * @type {import('@reduxjs/toolkit').ConfigureStoreOptions}
+ * @description This function create slice for auth.
+ * @see https://redux-toolkit.js.org/api/createSlice
+ */
+
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
@@ -8,18 +14,16 @@ const authSlice = createSlice({
   },
   reducers: {
     setCredentials: (state, action) => {
-        const {email, accessToken} = action.payload
-        console.log(accessToken)
-        // localStorage.setItem('token', accessToken)
-        state.email = email
-        state.token = accessToken || localStorage.getItem('token')
+      const { email, accessToken } = action.payload
+      state.email = email
+      state.token = accessToken || localStorage.getItem('token')
     },
-    logOut : (state, action) => {
-        localStorage.removeItem('token')
-        sessionStorage.removeItem('token')
-        state.email = null
-        state.token = null
-    }
+    logOut: (state) => {
+      localStorage.removeItem('token')
+      sessionStorage.removeItem('token')
+      state.email = null
+      state.token = null
+    },
   },
 })
 
