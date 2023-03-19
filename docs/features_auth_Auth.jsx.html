@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: features/auth/Auth.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: features/auth/Auth.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useRef, useState, useEffect } from 'react'
+import { useNavigate, Navigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setCredentials } from './AuthSlice'
+import { useLoginMutation } from './AuthApiSlice'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import styles from './Auth.module.css'
+
+/**
+ * 
+ * @returns {JSX.Element} A JSX Auth component.
+ * @component
+ * @name Auth
+ * @description A component that displays a login form.
+ * @example &lt;Auth />
+ */
+
+function Auth() {
+  const token = localStorage.getItem('token') || sessionStorage.getItem('token')
+  const userRef = useRef()
+  const errRef = useRef()
+  const [isChecked, setIsChecked] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [errMsg, setErrMsg] = useState('')
+  const navigate = useNavigate()
+
+  if (token) {
+    return &lt;Navigate to="/profile" />
+  }
+
+  const handleChange = (event) => {
+    if (event.target.checked) {
+      console.log('Checkbox is checked')
+    } else {
+      console.log('Checkbox is NOT checked')
+    }
+    setIsChecked((current) => !current)
+  }
+
+  const [login, { isLoading }] = useLoginMutation()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    userRef.current.focus()
+  }, [])
+
+  useEffect(() => {
+    setErrMsg('')
+  }, [email, password])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const userData = await login({ email, password }).unwrap()
+      dispatch(setCredentials({ email, accessToken: userData.body.token }))
+      setEmail('')
+      setPassword('')
+      navigate('/profile')
+      if (isChecked) {
+        localStorage.setItem('token', userData.body.token)
+        sessionStorage.removeItem('token')
+      }
+      if (!isChecked) {
+        sessionStorage.setItem('token', userData.body.token)
+        localStorage.removeItem('token')
+      }
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg('Server is not responding')
+      } else if (err.response?.status === 400) {
+        setErrMsg('Missing email or password')
+      } else if (err.response?.status === 401) {
+        setErrMsg('Unhauthorized')
+      } else {
+        setErrMsg('Login failed')
+      }
+      errRef.current.focus()
+    }
+  }
+
+  const handleEmailInput = (e) => setEmail(e.target.value)
+  const handlePasswordInput = (e) => setPassword(e.target.value)
+
+  const content = isLoading ? (
+    &lt;h1>Loading...&lt;/h1>
+  ) : (
+    &lt;main className="main bg-dark">
+      &lt;section className="sign-in-content">
+        &lt;FontAwesomeIcon icon={faUserCircle} className="sign-in-icon" />
+        {/* &lt;i class="fa fa-user-circle sign-in-icon">&lt;/i> */}
+        &lt;h1 className={styles.formTitle}>Sign In&lt;/h1>
+
+        &lt;form className={styles.form} onSubmit={handleSubmit}>
+          &lt;div className="input-wrapper">
+            &lt;label htmlFor="email">Username&lt;/label>
+            &lt;input
+              className={styles.formInput}
+              color="black"
+              type="email"
+              id="email"
+              ref={userRef}
+              value={email}
+              onChange={handleEmailInput}
+              autoComplete="on"
+              required
+            />
+          &lt;/div>
+
+          &lt;div className="input-wrapper">
+            &lt;label htmlFor="password">Password&lt;/label>
+            &lt;input
+              className={styles.formInput}
+              type="password"
+              id="password"
+              onChange={handlePasswordInput}
+              value={password}
+              required
+            />
+          &lt;/div>
+          &lt;div className="input-remember">
+            &lt;input
+              type="checkbox"
+              id="remember-me"
+              value={isChecked}
+              onChange={handleChange}
+            />
+            &lt;label htmlFor="remember-me">Remember me&lt;/label>
+          &lt;/div>
+          &lt;div className="input-error" ref={errRef} tabIndex="-1">
+            {errMsg}
+          &lt;/div>
+          {/* &lt;button className={styles.formBtn}>Sign In&lt;/button> */}
+          &lt;button className="sign-in-button">Sign In&lt;/button>
+        &lt;/form>
+      &lt;/section>
+    &lt;/main>
+  )
+
+  return content
+}
+
+export default Auth
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Account">Account</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#Auth">Auth</a></li><li><a href="global.html#Feature">Feature</a></li><li><a href="global.html#Features">Features</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Hero">Hero</a></li><li><a href="global.html#Layout">Layout</a></li><li><a href="global.html#Nav">Nav</a></li><li><a href="global.html#Public">Public</a></li><li><a href="global.html#RequireAuth">RequireAuth</a></li><li><a href="global.html#Routing">Routing</a></li><li><a href="global.html#User">User</a></li><li><a href="global.html#authApiSlice">authApiSlice</a></li><li><a href="global.html#authSlice">authSlice</a></li><li><a href="global.html#baseQuery">baseQuery</a></li><li><a href="global.html#userApiSlice">userApiSlice</a></li><li><a href="global.html#userSlice">userSlice</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Mar 19 2023 12:17:26 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

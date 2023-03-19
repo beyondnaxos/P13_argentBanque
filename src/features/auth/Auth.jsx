@@ -3,9 +3,9 @@ import { useNavigate, Navigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from './AuthSlice'
 import { useLoginMutation } from './AuthApiSlice'
-import styles from './Auth.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import styles from './Auth.module.css'
 
 /**
  * 
