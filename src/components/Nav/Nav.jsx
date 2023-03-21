@@ -32,8 +32,6 @@ const Nav = () => {
       <span role='button' className="main-nav-logo" onClick={() => navigate("/")}>
         <img
           className="main-nav-logo-image"
-          //   src="./img/argentBankLogo.png"
-          //   src public img argentBankLogo.png
           src="/img/argentBankLogo.png"
           alt="Argent Bank Logo"
         />
