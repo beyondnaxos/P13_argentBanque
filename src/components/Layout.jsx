@@ -1,4 +1,4 @@
-import {Outlet} from 'react-router-dom';
+import { Outlet } from 'react-router-dom'
 
 /**
  * @returns {JSX.Element} A JSX Layout component.
@@ -8,7 +8,7 @@ import {Outlet} from 'react-router-dom';
  */
 
 const Layout = () => {
-    return <Outlet />
+  return <Outlet />
 }
 
 export default Layout

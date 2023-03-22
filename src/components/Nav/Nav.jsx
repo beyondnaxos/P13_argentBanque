@@ -17,19 +17,21 @@ import styles from './Nav.module.css'
  * @example <Nav />
  */
 
-
 const Nav = () => {
   const userFirstname = useSelector(selectCurrentFirstname)
   const userLastname = useSelector(selectCurrentLastname)
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const token = sessionStorage.getItem('token') ??  localStorage.getItem('token')
-  
-  
+  const token = sessionStorage.getItem('token') ?? localStorage.getItem('token')
+
   return (
     <nav className="main-nav">
-      <span role='button' className="main-nav-logo" onClick={() => navigate("/")}>
+      <span
+        role="button"
+        className="main-nav-logo"
+        onClick={() => navigate('/')}
+      >
         <img
           className="main-nav-logo-image"
           src="/img/argentBankLogo.png"
@@ -40,8 +42,13 @@ const Nav = () => {
       <div className={styles.logContainer}>
         {token ? (
           <>
-            <span role="button" onClick={() => navigate('/profile')} className={styles.userNameLink}>
-            <i className="fa fa-user-circle" style={{ 'marginRight': 4 }}></i>  { '  ' + userFirstname + ' '} {userLastname}
+            <span
+              role="button"
+              onClick={() => navigate('/profile')}
+              className={styles.userNameLink}
+            >
+              <i className="fa fa-user-circle" style={{ marginRight: 4 }}></i>{' '}
+              {'  ' + userFirstname + ' '} {userLastname}
             </span>
             <span
               role="button"
@@ -51,13 +58,13 @@ const Nav = () => {
                 navigate('/')
               }}
             >
-              <i className="fa fa-sign-out" style={{ 'marginRight': 4 }}></i>
+              <i className="fa fa-sign-out" style={{ marginRight: 4 }}></i>
               Sign Out
             </span>
           </>
         ) : (
           <a className="main-nav-item" href="/login">
-            <i className="fa fa-user-circle" style={{ 'marginRight': 4 }}></i>
+            <i className="fa fa-user-circle" style={{ marginRight: 4 }}></i>
             Sign In
           </a>
         )}

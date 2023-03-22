@@ -14,10 +14,9 @@ import { useGetUserDataMutation } from '../features/user/userApiSlice'
  */
 
 const Public = () => {
-
   const dispatch = useDispatch()
 
-  const [getUserData ] = useGetUserDataMutation()
+  const [getUserData] = useGetUserDataMutation()
 
   useEffect(() => {
     getUserDatas()
@@ -27,7 +26,10 @@ const Public = () => {
     const userData = await getUserData({}).unwrap()
     console.log(userData.body.firstName)
     dispatch(
-      setCredentials({ firstname: userData.body.firstName, lastname: userData.body.lastName })
+      setCredentials({
+        firstname: userData.body.firstName,
+        lastname: userData.body.lastName,
+      })
     )
   }
 
@@ -37,7 +39,6 @@ const Public = () => {
       <Features />
     </main>
   )
-  
 }
 
 export default Public

@@ -8,7 +8,7 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import styles from './Auth.module.css'
 
 /**
- * 
+ *
  * @returns {JSX.Element} A JSX Auth component.
  * @component
  * @name Auth
