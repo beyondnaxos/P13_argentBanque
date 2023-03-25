@@ -89,7 +89,6 @@ function Auth() {
     <main className="main bg-dark">
       <section className="sign-in-content">
         <FontAwesomeIcon icon={faUserCircle} className="sign-in-icon" />
-        {/* <i class="fa fa-user-circle sign-in-icon"></i> */}
         <h1 className={styles.formTitle}>Sign In</h1>
 
         <form className={styles.form} onSubmit={handleSubmit}>
@@ -131,7 +130,6 @@ function Auth() {
           <div className="input-error" ref={errRef} tabIndex="-1">
             {errMsg}
           </div>
-          {/* <button className={styles.formBtn}>Sign In</button> */}
           <button className="sign-in-button">Sign In</button>
         </form>
       </section>

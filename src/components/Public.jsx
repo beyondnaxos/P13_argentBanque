@@ -24,7 +24,6 @@ const Public = () => {
 
   const getUserDatas = async () => {
     const userData = await getUserData({}).unwrap()
-    console.log(userData.body.firstName)
     dispatch(
       setCredentials({
         firstname: userData.body.firstName,

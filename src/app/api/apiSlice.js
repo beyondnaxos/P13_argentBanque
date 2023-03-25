@@ -30,7 +30,6 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     const refreshResult = await baseQuery('/refresh', api, extraOptions)
     console.log(refreshResult)
     if (refreshResult?.data) {
-      console.log('log important', refreshResult.data);
       const email = api.getState().auth.email
       // store the new token
       api.dispatch(setCredentials({ ...refreshResult.data, email }))

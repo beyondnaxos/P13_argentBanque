@@ -41,7 +41,6 @@ const RequireAuth = () => {
   const token = localStorage.getItem('token') || sessionStorage.getItem('token')
   const location = useLocation()
   console.log('RequireAuth token: ', token)
-
   return token ? (
     &lt;Outlet />
   ) : (
