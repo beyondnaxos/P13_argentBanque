@@ -1,10 +1,10 @@
-# ArgentBanque
+# ArgentBank
 
-Welcome to ArgentBanque! This is a project that uses Vite React and Redux ToolKit to create a banking application.
+Welcome to ArgentBank! This is a project that uses Vite React and Redux ToolKit to create a banking application.
 
 ## Installation
 
-To install ArgentBanque, simply clone the repository and install the dependencies using the following commands:
+To install ArgentBank, simply clone the repository and install the dependencies using the following commands:
 
 ```
 git clone <https://github.com/beyondnaxos/P13_argentBanque.git>
@@ -25,7 +25,7 @@ This will start the development server and open the application in your default 
 
 ## Features
 
-ArgentBanque includes the following features:
+ArgentBank includes the following features:
 
 - User authentication
 - Account balance display ( not functional )
@@ -38,4 +38,4 @@ ArgentBanque includes the following features:
 
 ## Contributing
 
-If you would like to contribute to ArgentBanque, please fork the repository and submit a pull request. We welcome contributions from all developers.
+If you would like to contribute to ArgentBank, please fork the repository and submit a pull request. We welcome contributions from all developers.
