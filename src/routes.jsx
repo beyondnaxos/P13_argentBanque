@@ -8,8 +8,7 @@ import RequireAuth from './features/auth/RequireAuth'
 import User from './Pages/User'
 import Nav from './components/Nav/Nav'
 import Footer from './components/Footer/Footer'
-import { useSelector } from 'react-redux'
-import { selectCurrentToken } from './features/auth/AuthSlice'
+
 
 /**
  * 
